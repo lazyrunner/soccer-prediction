@@ -34,3 +34,73 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+```
+docker run --name postgres -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=secret -v ./data:/var/lib/postgresql/data -p 5432:5432 -d postgres
+```
+```
+docker run -d `
+    --name my-postgres `
+    -e POSTGRES_USER=admin `
+    -e POSTGRES_PASSWORD=password `
+    -e PGDATA=/var/lib/postgresql/data/pgdata `
+    -v ${PWD}/data:/var/lib/postgresql/data `
+    -p 5432:5432 `
+    postgres
+```
+
+
+```mermaid
+---
+title: ER Diagram
+---
+erDiagram
+    Predictions }o--|| Users : places
+    Predictions }o--|| Game : gameid
+    Predictions }o--|| Group: groupId
+    GroupRules }o--|| Group  : groupId
+    GroupRules }o--|| Rules  : groupId
+
+
+  
+Users {
+        int id
+        string name
+    }
+
+Game {
+    int id
+    string homeTeam
+    string awayTeam
+    datetime startTime
+    string externalData
+}
+
+Predictions {
+    int gameId
+    int userId
+    int homeScore
+    int awayScore
+    int groupId
+    bool locked
+}
+
+Group {
+    int groupId
+    string groupName
+}
+
+Rules {
+    int ruleId
+    string ruleName
+}
+
+GroupRules {
+    int ruleId
+    int groupId
+    bool enabled
+}
+
+```
+
+https://www.youtube.com/watch?v=hhudoSMM0yU&t=4382s
