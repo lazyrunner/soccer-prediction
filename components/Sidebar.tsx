@@ -54,6 +54,10 @@ const Sidebar = () => {
             <Settings className="mr-2 h-4 w-4" />
             <span>Settings</span>
           </CommandItem>
+          <CommandItem>
+            <Settings className="mr-2 h-4 w-4" />
+            <Link href="/sample">Sample</Link>
+          </CommandItem>
         </CommandGroup>
       </CommandList>
     </Command>
