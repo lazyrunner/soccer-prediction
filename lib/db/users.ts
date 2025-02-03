@@ -4,6 +4,7 @@ interface User {
     user_id: number
     email: string
     name: string
+    password?: string
   }
   
   interface CreateUserData {
@@ -26,9 +27,9 @@ interface User {
     // Get a user by email
     async findByEmail(email: string): Promise<User | null> {
       const [user] = await sql<User[]>`
-        SELECT user_id, email, name 
+        SELECT user_id, email, name, password 
         FROM users 
-        WHERE email = ${email}
+        WHERE LOWER(email) = LOWER(${email})
       `
       return user || null
     }

@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 const NavBar = () => {
+
   return (
     <div className="bg-primary dark:bg-slate-700 text-white py-2 px-5 flex justify-between">
       <Link href="/">
@@ -31,7 +32,7 @@ const NavBar = () => {
             <Link href="/profile">Profile</Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Link href="/auth">Logout</Link>
+            <Link href="/logout">Logout</Link>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
