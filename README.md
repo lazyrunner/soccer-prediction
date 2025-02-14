@@ -73,6 +73,7 @@ Game {
     string homeTeam
     string awayTeam
     datetime startTime
+    bool isOver
     string externalData
 }
 
