@@ -2,6 +2,7 @@
 
 import { LiveStandings } from "@/components/LiveStandings/LiveStandings";
 import { useUser } from "../context/UserContext";
+import OngoingGames from "@/components/OngoingGames/OngoingGames";
 
 export default function Home() {
   const { userId, name } = useUser();
@@ -11,6 +12,7 @@ export default function Home() {
         <div>Welcome, {userId ? `${name}` : "Guest"}!</div>
       </h1>
       <LiveStandings />
+      <OngoingGames />
     </>
   );
 }

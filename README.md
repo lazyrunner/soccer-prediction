@@ -69,7 +69,7 @@ Users {
     }
 
 Game {
-    int id
+    int game_id
     string homeTeam
     string awayTeam
     datetime startTime
