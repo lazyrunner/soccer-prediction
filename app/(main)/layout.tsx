@@ -17,15 +17,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" className="h-full">
+      <body className={`${inter.className} h-full overflow-hidden`}>
         <UserProvider>
-          <NavBar />
-          <div className="flex">
-            <div className="hidden md:block h-[100vh] w-[300px]">
-              <Sidebar />
+          {/* Main layout container with fixed height */}
+          <div className="flex flex-col h-full">
+            {/* Fixed navigation bar */}
+            <NavBar />
+            
+            {/* Remaining height with sidebar and content */}
+            <div className="flex flex-1 overflow-hidden">
+              {/* Fixed sidebar */}
+              <div className="hidden md:block w-[300px] h-full overflow-y-auto">
+                <Sidebar />
+              </div>
+              
+              {/* Scrollable content area */}
+              <div className="flex-1 overflow-y-auto p-5">
+                {children}
+              </div>
             </div>
-            <div className="p-5 w-full ">{children}</div>
           </div>
         </UserProvider>
       </body>
