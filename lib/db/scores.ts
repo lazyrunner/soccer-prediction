@@ -61,13 +61,22 @@ import sql  from './index'
 
     async getGamesWithLockedPredictions(userId: number, groupId: number = 1): Promise<any> {
       return sql<[]>`
-        select distinct g.game_id, g.hometeam, g.awayteam, g.home_score, g.away_score, g.stage, g.isover, g.starttime, g.stage
-        from game g
-        inner join predictions p on g.game_id = p.game_id
-        where p.user_id = ${userId}
-        and p.locked_in = true
-        and p.group_id = ${groupId}
-        order by g.game_id
+        (
+          select distinct g.game_id, g.hometeam, g.awayteam, g.home_score, g.away_score, g.stage, g.isover, g.starttime
+          from game g
+          inner join predictions p on g.game_id = p.game_id
+          where p.user_id = ${userId}
+          and p.locked_in = true
+          and p.group_id = ${groupId}
+          and NOW() < g.starttime
+        )
+        UNION
+        (
+          select distinct g.game_id, g.hometeam, g.awayteam, g.home_score, g.away_score, g.stage, g.isover, g.starttime
+          from game g
+          where g.isover = true
+        )
+        order by starttime
       `
     }
 
@@ -78,7 +87,7 @@ import sql  from './index'
         join game g on g.game_id = p.game_id
         join users u on u.user_id = p.user_id
         where g.game_id = ${gameId}
-        and p.locked_in = true
+        and (g.isover = true or p.locked_in = true)
       `
     }
   }

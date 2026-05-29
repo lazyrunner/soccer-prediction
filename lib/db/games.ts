@@ -20,6 +20,7 @@ export class GameRepository {
       from game g 
       left join predictions p on g.game_id = p.game_id and p.user_id = ${userId}
       where NOW() < g.starttime
+      order by g.starttime
     ` 
   }
   

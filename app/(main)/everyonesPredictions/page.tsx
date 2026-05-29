@@ -90,7 +90,7 @@ export default function EveryonesPredictions() {
                 <div className="flex-1 text-center">
                   <p className="font-bold text-lg">{game.homeTeam}</p>
                   <div className="h-12 w-12 bg-gray-200 rounded-full flex items-center justify-center mx-auto mt-2">
-                    <span className="text-2xl font-bold">{game.hs}</span>
+                    <span className="text-2xl font-bold">{game.hasStarted ? game.hs : "-"}</span>
                   </div>
                 </div>
 
@@ -101,7 +101,7 @@ export default function EveryonesPredictions() {
                 <div className="flex-1 text-center">
                   <p className="font-bold text-lg">{game.awayTeam}</p>
                   <div className="h-12 w-12 bg-gray-200 rounded-full flex items-center justify-center mx-auto mt-2">
-                    <span className="text-2xl font-bold">{game.aw}</span>
+                    <span className="text-2xl font-bold">{game.hasStarted ? game.aw : "-"}</span>
                   </div>
                 </div>
               </div>

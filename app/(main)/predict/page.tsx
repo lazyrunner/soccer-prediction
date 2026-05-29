@@ -21,8 +21,8 @@ export default function Predict() {
   const { userId, name } = useUser();
   return (
     <>
-      <h1>
-        <div>Upcoming Games</div>
+      <h1 className="py-3 text-3xl font-bold tracking-tight text-gray-900">
+        Upcoming Games
       </h1>
       {games.map((game) => (
         <ScoreBox

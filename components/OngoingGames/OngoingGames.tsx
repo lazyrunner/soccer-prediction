@@ -1,56 +1,18 @@
 import { useState, useEffect } from "react";
 
-// Sample data
-const initialGames = [
-  {
-    gameId: 1,
-    hs: 1,
-    aw: 2,
-    homeTeam: "Germany",
-    awayTeam: "France",
-    predictions: [
-      { name: "Joshua", hs: 1, as: 1, score: 10 },
-      { name: "Joanne", hs: 0, as: 1, score: 5 },
-      { name: "Sam", hs: 0, as: 3, score: 0 },
-    ],
-  },
-  {
-    gameId: 2,
-    hs: 0,
-    aw: 0,
-    homeTeam: "Spain",
-    awayTeam: "Italy",
-    predictions: [
-      { name: "Joshua", hs: 2, as: 1, score: 0 },
-      { name: "Joanne", hs: 0, as: 0, score: 10 },
-      { name: "Sam", hs: 1, as: 0, score: 0 },
-    ],
-  },
-  {
-    gameId: 3,
-    hs: 3,
-    aw: 1,
-    homeTeam: "England",
-    awayTeam: "Netherlands",
-    predictions: [
-      { name: "Joshua", hs: 2, as: 0, score: 5 },
-      { name: "Joanne", hs: 1, as: 1, score: 0 },
-      { name: "Sam", hs: 3, as: 1, score: 10 },
-    ],
-  },
-  {
-    gameId: 4,
-    hs: 3,
-    aw: 1,
-    homeTeam: "England",
-    awayTeam: "Netherlands",
-    predictions: [
-      { name: "Joshua", hs: 2, as: 0, score: 5 },
-      { name: "Joanne", hs: 1, as: 1, score: 0 },
-      { name: "Sam", hs: 3, as: 1, score: 10 },
-    ],
-  },
-];
+interface Game {
+  gameId: number;
+  homeTeam: string;
+  awayTeam: string;
+  hs: number;
+  aw: number;
+  predictions: {
+    name: string;
+    hs: number;
+    as: number;
+    score: number;
+  }[];
+}
 
 // LiveIndicator component for the blinking effect
 const LiveIndicator = () => {
@@ -78,7 +40,18 @@ const LiveIndicator = () => {
 
 // Main component
 export default function OngoingGames() {
-  const [games, setGames] = useState(initialGames);
+  const [games, setGames] = useState<Game[]>([]);
+
+  useEffect(() => {
+    fetch('/api/scores/ongoing-games')
+      .then(response => response.json())
+      .then(data => {
+        setGames(data);
+      })
+      .catch(error => {
+        console.error('Error fetching ongoing games:', error);
+      });
+  }, []);
 
   return (
     <div className="mx-auto p-4 bg-slate-100 mt-4 rounded-md">
