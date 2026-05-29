@@ -10,14 +10,18 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import MobileMenuButton from "./MobileMenuButton";
 
 const NavBar = () => {
 
   return (
-    <div className="bg-primary dark:bg-slate-700 text-white py-2 px-5 flex justify-between">
-      <Link href="/">
-        <Image src={logo} alt="Soccer Prediction" width={40} />
-      </Link>
+    <div className="bg-primary dark:bg-slate-700 text-white py-2 px-5 flex justify-between items-center">
+      <div className="flex items-center gap-2">
+        <Link href="/">
+          <Image src={logo} alt="Soccer Prediction" width={40} />
+        </Link>
+        <MobileMenuButton />
+      </div>
       <DropdownMenu>
         <DropdownMenuTrigger className="focus:outline-none">
           <Avatar>

@@ -1,23 +1,13 @@
 import {
   Command,
-  CommandDialog,
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
   CommandList,
-  CommandSeparator,
-  CommandShortcut,
 } from "@/components/ui/command";
 import Link from "next/link";
-import {
-  LayoutDashboard,
-  Newspaper,
-  Folders,
-  CreditCard,
-  Settings,
-  User,
-} from "lucide-react";
+import { LayoutDashboard, Newspaper, Folders, HelpCircle } from "lucide-react";
 
 const Sidebar = () => {
   return (
@@ -38,25 +28,9 @@ const Sidebar = () => {
             <Folders className="mr-2 h-4 w-4" />
             <Link href="/everyonesPredictions">Everyones Predictions</Link>
           </CommandItem>
-        </CommandGroup>
-        <CommandSeparator />
-        <CommandGroup heading="Settings">
           <CommandItem>
-            <User className="mr-2 h-4 w-4" />
-            <span>Profile</span>
-            <CommandShortcut>ctrlP</CommandShortcut>
-          </CommandItem>
-          <CommandItem>
-            <CreditCard className="mr-2 h-4 w-4" />
-            <span>Billing</span>
-          </CommandItem>
-          <CommandItem>
-            <Settings className="mr-2 h-4 w-4" />
-            <span>Settings</span>
-          </CommandItem>
-          <CommandItem>
-            <Settings className="mr-2 h-4 w-4" />
-            <Link href="/sample">Sample</Link>
+            <HelpCircle className="mr-2 h-4 w-4" />
+            <Link href="/faq">FAQ</Link>
           </CommandItem>
         </CommandGroup>
       </CommandList>
