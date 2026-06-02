@@ -20,7 +20,7 @@ import sql  from './index'
         on g.game_id = p.game_id
         join users u
         on u.user_id = p.user_id 
-        where g.isover = true 
+        where NOW() > g.starttime
       `
     }
 
@@ -74,7 +74,7 @@ import sql  from './index'
         (
           select distinct g.game_id, g.hometeam, g.awayteam, g.home_score, g.away_score, g.stage, g.isover, g.starttime
           from game g
-          where g.isover = true
+          where NOW() >= g.starttime
         )
         order by starttime
       `
